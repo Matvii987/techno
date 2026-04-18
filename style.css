@@ -147,13 +147,12 @@ button:hover {
     border: 2px solid #5cbd1c;
     font-weight: 500;
     transition: all 0.3s ease;
+    border-radius: 40px;
 }
 
-.btn-basket:hover {
-    background: #5cbd1c;
-    color: white;
+.btn-basket:hover{
+    background: white;
 }
-
 /* Бургер */
 .burger {
     display: none;
@@ -181,6 +180,7 @@ button:hover {
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     transition: all 0.4s ease;
+    justify-content: center;
 }
 
 .filter-btn {

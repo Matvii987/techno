@@ -19,7 +19,6 @@ async function loadProducts() {
         products.forEach(product => {
             const cardHTML = `
                 <div class="product-card">
-                    <div class="badge">Кращ</div>
                     <img src="${product.image || 'assets/samsung_s25.jpg'}" alt="${product.title}">
                     <h3>${product.title}</h3>
                     <div class="price">

@@ -2,7 +2,37 @@
   {
     "id": 1,
     "title": "Смартфон Samsung Galaxy S25",
-    "price": 29999,
+    "price": 32999,
     "image": "assets/samsung_s25.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Смартфон iPhone 17 Pro Max",
+    "price": 75999,
+    "image": "assets/iphone17pro_max.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Смартфон iPhone 16 Pro Max",
+    "price": 60999,
+    "image": "assets/iphone16_pro_max.avif"
+  },
+  {
+    "id": 4,
+    "title": "Смартфон iPhone 17",
+    "price": 58999,
+    "image": "assets/iphone17.avif"
+  },
+  {
+    "id": 5,
+    "title": "Смартфон Samsung Galaxy A37",
+    "price": 29999,
+    "image": "assets/samsung_a37.webp"
+  },
+  {
+    "id": 6,
+    "title": "Смартфон Xiaomi Redmi 15C",
+    "price": 8999,
+    "image": "assets/xiomi_redmi_15c.avif"
   }
 ]
