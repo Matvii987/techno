@@ -155,7 +155,7 @@ function startVoice() {
 }
 
 function toggleMenu() {
-    document.body.classList.toggle("menu-open");
+    document.querySelector('header').classList.toggle("menu-open");
 }
 
 
