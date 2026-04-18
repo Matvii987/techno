@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecno</title>
+    <link rel="icon" href="assets/icon-tecno.jpg" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        <span class="logo-icon">
+            <i class="ti ti-bolt"></i>
+        </span>
+        <span class="logo-text">Tecno</span>
+    </div>
+
+    <div class="center">
+        <div class="search-box">
+            <input id="searchInput" type="search" placeholder="Пошук...">
+            <i class="ti ti-microphone mic-icon" onclick="startVoice()"></i>
+        </div>
+
+        <button class="submit-btn">
+            <i class="ti ti-search"></i>
+        </button>
+    </div>
+
+    <div class="burger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="menu">
+        <button><i class="ti ti-category"></i> Каталог</button>
+        <button id="btn-basket" class="btn-basket"><i class="ti ti-shopping-cart"></i> Кошик</button>
+    </div>
+
+
+    <div id="overlay">
+      <div id="modal">
+        <button id="closeBtn"><i class="ti ti-x"></i></button>
+
+        <div id="cartItems">
+          <p></p>
+        </div>
+      </div>
+    </div>
+</header>
+
+<!-- ТОВАРИ-->
+<main class="products">
+
+
+    <!-- ЗІ ЗНИЖКОЮ -->
+    <div class="product-card">
+        <div class="badge">Кращ</div>
+
+        <img src="assets/samsung_s25.jpg" alt="product">
+
+        <h3>Смартфон Samsung Galaxy S25</h3>
+
+        <div class="price-block">
+            <span class="old-price">32 999 ₴</span>
+            <span class="price sale">29 999 ₴</span>
+        </div>
+
+        <button id="buy-btn" class="buy-btn">
+           <i class="ti ti-shopping-cart"></i>
+        </button>
+    </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
+
