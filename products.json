@@ -1,7 +1,8 @@
 [
-    {
-        "id": 1,
-        "title": "Смартфон Samsung Galaxy S25",
-        "price": 29999
-    }
+  {
+    "id": 1,
+    "title": "Смартфон Samsung Galaxy S25",
+    "price": 29999,
+    "image": "assets/samsung_s25.jpg"
+  }
 ]
