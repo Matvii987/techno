@@ -11,6 +11,7 @@ body {
     line-height: 1.5;
 }
 
+/* ====================== HEADER ====================== */
 header {
     display: flex;
     align-items: center;
@@ -23,6 +24,7 @@ header {
     width: 100%;
     z-index: 1000;
     gap: 15px;
+    transition: all 0.4s ease;
 }
 
 .logo {
@@ -30,6 +32,11 @@ header {
     align-items: center;
     gap: 8px;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.02);
 }
 
 .logo-icon {
@@ -42,6 +49,11 @@ header {
     justify-content: center;
     color: white;
     font-size: 20px;
+    transition: transform 0.4s ease;
+}
+
+.logo:hover .logo-icon {
+    transform: rotate(-8deg);
 }
 
 .logo-text {
@@ -50,6 +62,7 @@ header {
     color: #5cbd1c;
 }
 
+/* ==================== ПОШУК ==================== */
 .center {
     flex: 1;
     display: flex;
@@ -69,9 +82,15 @@ header {
     height: 48px;
     border-radius: 12px;
     border: 2px solid #5cbd1c;
-    padding: 0 45px 0 15px;
+    padding: 0 50px 0 15px;
     font-size: 16px;
     outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    border-color: #5cbd1c;
+    box-shadow: 0 0 0 3px rgba(92, 189, 28, 0.15);
 }
 
 .mic-icon {
@@ -82,6 +101,11 @@ header {
     color: #666;
     cursor: pointer;
     font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.mic-icon:hover {
+    color: #5cbd1c;
 }
 
 .submit-btn {
@@ -93,14 +117,14 @@ header {
     color: white;
     cursor: pointer;
     font-size: 20px;
+    transition: all 0.3s ease;
 }
 
-.menu {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+.submit-btn:hover {
+    background: #4aa316;
 }
 
+/* Кнопки меню */
 button {
     padding: 10px 14px;
     border: none;
@@ -110,6 +134,11 @@ button {
     cursor: pointer;
     font-size: 15px;
     white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #4aa316;
 }
 
 .btn-basket {
@@ -117,8 +146,15 @@ button {
     color: #5cbd1c;
     border: 2px solid #5cbd1c;
     font-weight: 500;
+    transition: all 0.3s ease;
 }
 
+.btn-basket:hover {
+    background: #5cbd1c;
+    color: white;
+}
+
+/* Бургер */
 .burger {
     display: none;
     flex-direction: column;
@@ -131,6 +167,7 @@ button {
     height: 3px;
     background: #222;
     border-radius: 2px;
+    transition: all 0.4s ease;
 }
 
 /* Фільтри */
@@ -138,12 +175,12 @@ button {
     background: white;
     padding: 15px 20px;
     display: flex;
-    justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
     margin: 15px 20px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: all 0.4s ease;
 }
 
 .filter-btn {
@@ -154,14 +191,14 @@ button {
     padding: 8px 16px;
     border-radius: 20px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
 }
 
 .filter-btn:hover {
     background: #f0f0f0;
 }
 
-/* Товари */
+/* ====================== ТОВАРИ ====================== */
 .products {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
@@ -174,12 +211,12 @@ button {
     padding: 15px;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    transition: all 0.3s;
+    transition: all 0.4s ease;
     position: relative;
 }
 
 .product-card:hover {
-    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 
 .badge {
@@ -192,35 +229,29 @@ button {
     border-radius: 6px;
     font-size: 12px;
     font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 .product-card img {
     width: 100%;
     height: 180px;
     object-fit: contain;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    transition: transform 0.4s ease;
 }
 
 .product-card h3 {
     font-size: 15px;
-    margin: 10px 0 8px;
+    margin: 10px 0 12px;
     min-height: 42px;
-}
-
-.price-block {
-    margin: 10px 0;
+    transition: color 0.3s ease;
 }
 
 .price {
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 700;
     color: #e63939;
-}
-
-.old-price {
-    text-decoration: line-through;
-    color: #888;
-    font-size: 14px;
+    margin-bottom: 12px;
 }
 
 .buy-btn {
@@ -236,15 +267,14 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 0.3s;
+    transition: all 0.4s ease;
 }
 
 .buy-btn:hover {
     background: #ff7700;
-    transform: scale(1.1);
 }
 
-/* Кошик */
+/* ====================== КОШИК ====================== */
 #overlay {
     position: fixed;
     top: 0; left: 0;
@@ -254,51 +284,90 @@ button {
     justify-content: center;
     align-items: center;
     z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
 #overlay.active {
     display: flex;
+    opacity: 1;
 }
 
 #modal {
     background: white;
     width: 90%;
-    max-width: 500px;
+    max-width: 520px;
     border-radius: 16px;
-    padding: 20px;
+    padding: 25px;
     position: relative;
-    max-height: 90vh;
+    max-height: 92vh;
     overflow-y: auto;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+#overlay.active #modal {
+    transform: scale(1);
+    opacity: 1;
 }
 
 #closeBtn {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 15px;
+    right: 15px;
     background: none;
     border: none;
-    font-size: 26px;
+    font-size: 28px;
     cursor: pointer;
     color: #666;
+    transition: all 0.3s ease;
 }
 
+#closeBtn:hover {
+    color: #e63939;
+    transform: rotate(90deg);
+}
+
+#cartItems h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #333;
+}
+
+/* Порожній кошик */
+#cartItems p {
+    text-align: center;
+    color: #888;
+    font-size: 17px;
+    padding: 80px 20px;
+    line-height: 1.6;
+}
+
+/* Елемент товару в кошику */
 .cart-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 15px 0;
+    gap: 15px;
+    padding: 18px 0;
     border-bottom: 1px solid #eee;
+    transition: background 0.3s ease;
 }
 
 .cart-item:last-child {
     border-bottom: none;
 }
 
+.cart-item:hover {
+    background: #fafafa;
+}
+
 .cart-item-img {
-    width: 70px;
-    height: 70px;
+    width: 75px;
+    height: 75px;
     object-fit: contain;
     border-radius: 8px;
+    flex-shrink: 0;
 }
 
 .cart-item-info {
@@ -306,43 +375,66 @@ button {
 }
 
 .cart-item-info h4 {
-    margin-bottom: 4px;
-    font-size: 15px;
+    margin-bottom: 6px;
+    font-size: 15.5px;
+    line-height: 1.3;
 }
 
 .cart-item-price {
-    color: #e63939;
+    color: #e63939;           /* Червоний колір ціни */
     font-weight: 700;
+    font-size: 17px;
 }
 
+/* Блок кількості + ціна вирівняні */
 .cart-item-quantity {
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-right: 10px;
 }
 
 .qty-btn {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border: 1px solid #ccc;
     background: white;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qty-btn:hover {
+    background: #f0f0f0;
+    border-color: #5cbd1c;
 }
 
 .remove-btn {
     background: none;
     border: none;
-    font-size: 20px;
+    font-size: 23px;
     color: #e63939;
     cursor: pointer;
+    padding: 5px 8px;
+    transition: all 0.3s ease;
+}
+
+.remove-btn:hover {
+    transform: scale(1.25);
+    color: #c11212;
 }
 
 .cart-total {
     text-align: right;
-    font-size: 19px;
-    margin: 20px 0;
+    font-size: 20px;
+    margin: 25px 0 18px 0;
     font-weight: 700;
+    color: #222;
 }
 
 .checkout-btn {
@@ -354,6 +446,11 @@ button {
     border-radius: 10px;
     font-size: 17px;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.checkout-btn:hover {
+    background: #4aa316;
 }
 
 /* Повідомлення */
@@ -368,13 +465,13 @@ button {
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     opacity: 0;
-    transition: all 0.3s;
+    transition: all 0.4s ease;
     z-index: 3000;
 }
 
 .notification.show {
     opacity: 1;
-    bottom: 30px;
+    bottom: 35px;
 }
 
 /* Адаптив */
@@ -390,19 +487,23 @@ button {
         border-radius: 12px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         width: 180px;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
     }
 
     .menu-open .menu {
         display: flex;
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .burger {
         display: flex;
     }
 
-    .center {
-        order: 3;
-        width: 100%;
-        margin-top: 8px;
+    #modal {
+        width: 95%;
+        padding: 20px;
     }
 }
