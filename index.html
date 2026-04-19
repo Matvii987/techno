@@ -23,7 +23,7 @@
 
     <div class="center">
         <div class="search-box">
-            <input id="searchInput" type="search" placeholder="Пошук...">
+            <input id="searchInput" type="search" placeholder="Пошук товарів...">
             <i class="ti ti-microphone mic-icon" onclick="startVoice()"></i>
         </div>
         <button class="submit-btn">
@@ -38,8 +38,7 @@
     </div>
 
     <div class="menu">
-        <button><i class="ti ti-category"></i> Каталог</button>
-        <br>
+        <button onclick="showAllProducts()">Каталог</button>
         <button id="btn-basket" class="btn-basket">
             <i class="ti ti-shopping-cart"></i> Кошик
         </button>
@@ -55,10 +54,11 @@
 </header>
 
 <div class="filter">
-    <button class="filter-btn">Смартфони</button>
-    <button class="filter-btn">Ноутбуки</button>
-    <button class="filter-btn">Планшети</button>
-    <button class="filter-btn">Монітори</button>
+    <button class="filter-btn active" data-category="all">Всі товари</button>
+    <button class="filter-btn" data-category="smartphone">Смартфони</button>
+    <button class="filter-btn" data-category="laptop">Ноутбуки</button>
+    <button class="filter-btn" data-category="tablet">Планшети</button>
+    <button class="filter-btn" data-category="monitor">Монітори</button>
 </div>
 
 <!-- Контейнер для товарів -->
@@ -67,3 +67,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+

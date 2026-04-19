@@ -3,36 +3,70 @@
     "id": 1,
     "title": "Смартфон Samsung Galaxy S25",
     "price": 32999,
-    "image": "assets/samsung_s25.jpg"
+    "image": "assets/samsung_s25.jpg",
+    "category": "smartphone"
   },
   {
     "id": 2,
     "title": "Смартфон iPhone 17 Pro Max",
     "price": 75999,
-    "image": "assets/iphone17pro_max.jpg"
+    "image": "assets/iphone17pro_max.jpg",
+    "category": "smartphone"
   },
   {
     "id": 3,
     "title": "Смартфон iPhone 16 Pro Max",
     "price": 60999,
-    "image": "assets/iphone16_pro_max.avif"
+    "image": "assets/iphone16_pro_max.avif",
+    "category": "smartphone"
   },
   {
     "id": 4,
-    "title": "Смартфон iPhone 17",
-    "price": 58999,
-    "image": "assets/iphone17.avif"
+    "title": "Смартфон Xiaomi Redmi 15C",
+    "price": 8999,
+    "image": "assets/xiomi_redmi_15c.avif",
+    "category": "smartphone"
   },
   {
     "id": 5,
-    "title": "Смартфон Samsung Galaxy A37",
-    "price": 29999,
-    "image": "assets/samsung_a37.webp"
+    "title": "Ноутбук Lenovo IdeaPad 3",
+    "price": 18999,
+    "image": "assets/lenovo_ideapad.jpg",
+    "category": "laptop"
   },
   {
     "id": 6,
-    "title": "Смартфон Xiaomi Redmi 15C",
-    "price": 8999,
-    "image": "assets/xiomi_redmi_15c.avif"
+    "title": "Ноутбук ASUS VivoBook 15",
+    "price": 22999,
+    "image": "assets/asus_vivobook.jpg",
+    "category": "laptop"
+  },
+  {
+    "id": 7,
+    "title": "Планшет Samsung Galaxy Tab S9",
+    "price": 28999,
+    "image": "assets/galaxy_tab_s9.jpg",
+    "category": "tablet"
+  },
+  {
+    "id": 8,
+    "title": "Планшет iPad 10.9 (2024)",
+    "price": 34999,
+    "image": "assets/ipad_109.jpg",
+    "category": "tablet"
+  },
+  {
+    "id": 9,
+    "title": "Монітор LG UltraGear 27\"",
+    "price": 12499,
+    "image": "assets/lg_ultragear.jpg",
+    "category": "monitor"
+  },
+  {
+    "id": 10,
+    "title": "Монітор Samsung Odyssey G5",
+    "price": 15999,
+    "image": "assets/samsung_odyssey.jpg",
+    "category": "monitor"
   }
 ]

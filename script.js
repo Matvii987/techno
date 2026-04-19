@@ -1,58 +1,102 @@
-// ====================== КОШИК ======================
 let cart = [];
+let allProducts = [];
 
+// Елементи
 const basketBtn = document.getElementById("btn-basket");
 const overlay = document.getElementById("overlay");
 const modal = document.getElementById("modal");
 const closeBtn = document.getElementById("closeBtn");
 const cartItemsContainer = document.getElementById("cartItems");
 const productList = document.getElementById("productList");
+const filterBtns = document.querySelectorAll('.filter-btn');
+const header = document.querySelector('header');        // ← Додано
+const burger = document.querySelector('.burger');       // ← Додано
+const menu = document.querySelector('.menu');           // ← Додано
 
-// Завантаження товарів
+// ========================= БУРГЕР МЕНЮ =========================
+function toggleMenu() {
+    header.classList.toggle('menu-open');
+}
+
+// Закриття меню при кліку на кнопку всередині меню
+document.querySelectorAll('.menu button').forEach(btn => {
+    btn.addEventListener('click', () => {
+        header.classList.remove('menu-open');
+    });
+});
+
+// ========================= ЗАВАНТАЖЕННЯ ТОВАРІВ =========================
 async function loadProducts() {
     try {
         const response = await fetch("products.json");
-        const products = await response.json();
-
-        productList.innerHTML = "";
-
-        products.forEach(product => {
-            const cardHTML = `
-                <div class="product-card">
-                    <img src="${product.image || 'assets/samsung_s25.jpg'}" alt="${product.title}">
-                    <h3>${product.title}</h3>
-                    <div class="price">
-                        ${product.price.toLocaleString('uk-UA')} ₴
-                    </div>
-                    <button class="buy-btn" data-id="${product.id}">
-                        <i class="ti ti-shopping-cart"></i>
-                    </button>
-                </div>
-            `;
-            productList.innerHTML += cardHTML;
-        });
-
-        // Додаємо обробники після створення карток
-        document.querySelectorAll('.buy-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const id = parseInt(btn.dataset.id);
-                const product = products.find(p => p.id === id);
-                if (product) addToCart(product);
-            });
-        });
-
+        allProducts = await response.json();
+        renderProducts(allProducts);
     } catch (error) {
         console.error("Помилка завантаження товарів:", error);
-        productList.innerHTML = "<p>Не вдалося завантажити товари.</p>";
+        productList.innerHTML = `<p style="grid-column:1/-1;text-align:center;padding:50px;color:#888;">
+            Не вдалося завантажити товари.
+        </p>`;
     }
 }
 
-// Форматування ціни
-function formatPrice(price) {
-    return Number(price).toLocaleString('uk-UA') + ' ₴';
+// Рендер товарів
+function renderProducts(products) {
+    productList.innerHTML = "";
+
+    if (products.length === 0) {
+        productList.innerHTML = `<p style="grid-column:1/-1;text-align:center;padding:60px;color:#888;">
+            Товарів у цій категорії поки немає 😔
+        </p>`;
+        return;
+    }
+
+    products.forEach(product => {
+        const cardHTML = `
+            <div class="product-card">
+                <img src="${product.image || 'assets/placeholder.jpg'}" alt="${product.title}">
+                <h3>${product.title}</h3>
+                <div class="price">
+                    ${product.price.toLocaleString('uk-UA')} ₴
+                </div>
+                <button class="buy-btn" data-id="${product.id}">
+                    <i class="ti ti-shopping-cart"></i>
+                </button>
+            </div>
+        `;
+        productList.innerHTML += cardHTML;
+    });
+
+    // Додаємо обробники кнопок "Купити"
+    document.querySelectorAll('.buy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = parseInt(btn.dataset.id);
+            const product = allProducts.find(p => p.id === id);
+            if (product) addToCart(product);
+        });
+    });
 }
 
-// Оновлення кількості в кошику
+// Фільтрація
+function filterProducts(category) {
+    filterBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.category === category);
+    });
+
+    if (category === "all") {
+        renderProducts(allProducts);
+    } else {
+        const filtered = allProducts.filter(p => p.category === category);
+        renderProducts(filtered);
+    }
+}
+
+function showAllProducts() {
+    filterBtns.forEach(btn => btn.classList.remove('active'));
+    document.querySelector('.filter-btn[data-category="all"]').classList.add('active');
+    renderProducts(allProducts);
+}
+
+// ========================= КОШИК =========================
 function updateCartCount() {
     let countEl = document.querySelector("#btn-basket .cart-count");
     if (!countEl) {
@@ -63,19 +107,20 @@ function updateCartCount() {
     countEl.textContent = totalItems;
 }
 
-// Рендер кошика
 function renderCart() {
-    cartItemsContainer.innerHTML = `<h2 style="margin-bottom:15px;">Ваш кошик</h2>`;
+    cartItemsContainer.innerHTML = `<h2>Ваш кошик</h2>`;
 
     if (cart.length === 0) {
-        cartItemsContainer.innerHTML += `<p style="text-align:center; color:#888; padding:60px 0;">Кошик порожній 😔</p>`;
+        cartItemsContainer.innerHTML += `<p style="text-align:center; color:#888; padding:80px 20px;">
+            Кошик порожній 😔<br>Додайте щось зі списку товарів
+        </p>`;
         return;
     }
 
     cart.forEach((item, index) => {
         const itemHTML = `
             <div class="cart-item">
-                <img src="${item.image || 'assets/samsung_s25.jpg'}" alt="${item.title}" class="cart-item-img">
+                <img src="${item.image || 'assets/placeholder.jpg'}" alt="${item.title}" class="cart-item-img">
                 <div class="cart-item-info">
                     <h4>${item.title}</h4>
                     <p class="cart-item-price">${formatPrice(item.price)}</p>
@@ -100,7 +145,6 @@ function renderCart() {
     `;
 }
 
-// Додавання в кошик
 function addToCart(product) {
     const existing = cart.find(item => item.id === product.id);
     if (existing) {
@@ -112,7 +156,10 @@ function addToCart(product) {
     showNotification(`✅ ${product.title} додано до кошика`);
 }
 
-// Повідомлення
+function formatPrice(price) {
+    return Number(price).toLocaleString('uk-UA') + ' ₴';
+}
+
 function showNotification(msg) {
     const notif = document.createElement('div');
     notif.className = 'notification';
@@ -126,46 +173,18 @@ function showNotification(msg) {
     }, 2200);
 }
 
-// Модальне вікно успіху
-function showSuccessModal() {
-    const modalHTML = `
-        <div class="success-modal" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:flex;justify-content:center;align-items:center;z-index:3000;">
-            <div style="background:white;padding:40px 30px;border-radius:16px;text-align:center;max-width:340px;box-shadow:0 10px 30px rgba(0,0,0,0.3);">
-                <div style="font-size:70px;margin-bottom:15px;">🎉</div>
-                <h2 style="color:#5cbd1c;margin-bottom:10px;">Замовлення оформлено!</h2>
-                <p style="color:#555;margin-bottom:25px;">Дякуємо за покупку в Tecno.<br>Ми зв'яжемося з вами найближчим часом.</p>
-                <button onclick="this.closest('.success-modal').remove()" style="padding:14px 30px;background:#5cbd1c;color:white;border:none;border-radius:10px;cursor:pointer;">Закрити</button>
-            </div>
-        </div>
-    `;
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
-}
-
 // Голосовий пошук
 function startVoice() {
     const input = document.getElementById("searchInput");
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
     if (!SpeechRecognition) {
-        alert("Ваш браузер не підтримує голосовий пошук. Спробуйте Chrome.");
+        alert("Ваш браузер не підтримує голосовий пошук.");
         return;
     }
-
     const recognition = new SpeechRecognition();
     recognition.lang = "uk-UA";
-    recognition.interimResults = false;
-
-    recognition.onstart = () => input.placeholder = "Слухаю... 🎤";
     recognition.onresult = (e) => input.value = e.results[0][0].transcript;
-    recognition.onerror = () => input.placeholder = "Пошук...";
-    recognition.onend = () => input.placeholder = "Пошук...";
-
     recognition.start();
-}
-
-// Відкриття/закриття меню на мобільних
-function toggleMenu() {
-    document.querySelector('header').classList.toggle("menu-open");
 }
 
 // Закриття кошика
@@ -173,7 +192,7 @@ function closeCart() {
     overlay.classList.remove("active");
 }
 
-// ====================== ІНІЦІАЛІЗАЦІЯ ======================
+// ========================= ІНІЦІАЛІЗАЦІЯ =========================
 basketBtn.addEventListener("click", () => {
     renderCart();
     overlay.classList.add("active");
@@ -184,7 +203,7 @@ overlay.addEventListener("click", (e) => {
     if (e.target === overlay) closeCart();
 });
 
-// Обробка кліків у кошику (зміна кількості, видалення, оформлення)
+// Обробка кліків у кошику
 cartItemsContainer.addEventListener("click", (e) => {
     const index = parseInt(e.target.dataset.index);
 
@@ -209,6 +228,29 @@ cartItemsContainer.addEventListener("click", (e) => {
     updateCartCount();
 });
 
-// Завантаження товарів при старті
+// Фільтри
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const category = btn.dataset.category;
+        filterProducts(category);
+    });
+});
+
+// Модальне вікно успіху
+function showSuccessModal() {
+    const modalHTML = `
+        <div class="success-modal" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:flex;justify-content:center;align-items:center;z-index:3000;">
+            <div style="background:white;padding:40px 30px;border-radius:16px;text-align:center;max-width:340px;box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+                <div style="font-size:70px;margin-bottom:15px;">🎉</div>
+                <h2 style="color:#5cbd1c;margin-bottom:10px;">Замовлення оформлено!</h2>
+                <p style="color:#555;margin-bottom:25px;">Дякуємо за покупку в Tecno.<br>Ми зв'яжемося з вами найближчим часом.</p>
+                <button onclick="this.closest('.success-modal').remove()" style="padding:14px 30px;background:#5cbd1c;color:white;border:none;border-radius:10px;cursor:pointer;">Закрити</button>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+// Запуск при завантаженні
 loadProducts();
 updateCartCount();

@@ -474,6 +474,26 @@ button:hover {
     bottom: 35px;
 }
 
+/* Активний фільтр */
+.filter-btn.active {
+    background: #5cbd1c;
+    color: white;
+    font-weight: 600;
+}
+
+.filter-btn {
+    transition: all 0.3s ease;
+}
+
+/* Заголовок категорії (якщо потрібно) */
+.category-title {
+    grid-column: 1 / -1;
+    font-size: 24px;
+    font-weight: 700;
+    color: #222;
+    margin: 20px 0 10px 10px;
+}
+
 /* Адаптив */
 @media (max-width: 768px) {
     .menu {
@@ -507,3 +527,4 @@ button:hover {
         padding: 20px;
     }
 }
+
