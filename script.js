@@ -55,6 +55,7 @@ async function loadProducts() {
 }
 
 // Рендер товарів
+// Рендер товарів
 function renderProducts(products) {
     productList.innerHTML = "";
 
@@ -65,25 +66,17 @@ function renderProducts(products) {
         return;
     }
 
-    
-
-    function showDescription() {
-        modalDescription.classList.remove('hidden');
-    }
     products.forEach(product => {
-        const desc = product.description || 'Опис товару скоро з’явиться';
+        const desc = product.description || 'Опис товару скоро з’явиться...';
         const shortDesc = desc.substring(0, 110) + (desc.length > 110 ? '...' : '');
 
         const cardHTML = `
-            <div class="product-card" onclick="showDescription()">
+            <div class="product-card" data-id="${product.id}">
                 <img src="${product.image}" alt="${product.title}">
-
                 <h3>${product.title}</h3>
-
                 <div class="price">
                     ${product.price.toLocaleString('uk-UA')} ₴
                 </div>
-
                 <button class="buy-btn" data-id="${product.id}">
                     <i class="ti ti-shopping-cart"></i>
                 </button>
@@ -92,10 +85,26 @@ function renderProducts(products) {
         productList.innerHTML += cardHTML;
     });
 
+    // Обробка кліку по всій картці (крім кнопки Купити)
+    document.querySelectorAll('.product-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            // Якщо клікнули по кнопці "Купити" — не відкриваємо опис
+            if (e.target.closest('.buy-btn')) {
+                return;
+            }
+
+            const id = parseInt(card.dataset.id);
+            const product = allProducts.find(p => p.id === id);
+            if (product) {
+                showProductDescription(product);
+            }
+        });
+    });
+
     // Кнопки "Купити"
     document.querySelectorAll('.buy-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
-            e.stopPropagation();
+            e.stopPropagation(); // Важливо! щоб не спрацьовував клік по картці
             const id = parseInt(btn.dataset.id);
             const product = allProducts.find(p => p.id === id);
             if (product) addToCart(product);
@@ -466,6 +475,45 @@ document.querySelectorAll(".toggle-pass").forEach(btn => {
     });
 });
 
+// Показати опис товару
+function showProductDescription(product) {
+    const modal = document.getElementById('modal-description');
+    const content = document.getElementById('description-content');
+
+    content.innerHTML = `
+        <img src="${product.image}" alt="${product.title}">
+        <h2>${product.title}</h2>
+        <div class="price">${product.price.toLocaleString('uk-UA')} ₴</div>
+        <p>${product.description || 'Опис товару скоро з’явиться...'}</p>
+        
+        <button class="buy-btn" style="width:100%; height:52px; border-radius:12px; font-size:18px; margin-top:20px;" data-id="${product.id}">
+            <i class="ti ti-shopping-cart"></i> Додати до кошика
+        </button>
+    `;
+
+    modal.classList.add('active');
+
+    // Кнопка "Додати до кошика" всередині модального вікна
+    content.querySelector('.buy-btn').addEventListener('click', () => {
+        addToCart(product);
+    });
+}
+
+// Закриття модального вікна опису
+function closeDescriptionModal() {
+    const modal = document.getElementById('modal-description');
+    modal.classList.remove('active');
+}
+
+// Ініціалізація закриття модального вікна опису
+document.getElementById('closeBtn-d').addEventListener('click', closeDescriptionModal);
+
+// Закриття при кліку по фону
+document.getElementById('modal-description').addEventListener('click', (e) => {
+    if (e.target.id === 'modal-description') {
+        closeDescriptionModal();
+    }
+});
 
 
 updateUserUI();
