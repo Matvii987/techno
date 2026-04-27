@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tecno - Магазин техніки</title>
     <link rel="icon" href="assets/icon-tecno.jpg" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
@@ -26,7 +29,7 @@
             <input id="searchInput" type="search" placeholder="Пошук товарів...">
             <i class="ti ti-microphone mic-icon" onclick="startVoice()"></i>
         </div>
-        <button class="submit-btn">
+        <button class="submit-btn" id="submit-btn">
             <i class="ti ti-search"></i>
         </button>
     </div>
@@ -37,11 +40,34 @@
         <span></span>
     </div>
 
-    <div class="menu">
-        <button onclick="showAllProducts()">Каталог</button>
+    <div class="menu" style="gap: 10px;">
+        <button class="login-btn" id="log-btn">
+            <i class="ti ti-user"></i>Увійти
+        </button>
+        <button id="katalog" onclick="showAllProducts()">
+            <i class="ti ti-category"></i>Каталог
+        </button>
         <button id="btn-basket" class="btn-basket">
             <i class="ti ti-shopping-cart"></i> Кошик
         </button>
+    </div>
+
+        <div id="authModal" class="auth-modal">
+        <div class="auth-box">
+            <h2 id="authTitle">Вхід</h2>
+
+            <input type="text" id="authName" placeholder="Ім'я" style="display:none;">
+            <input type="email" id="authEmail" placeholder="Email">
+            <input type="password" id="authPassword" placeholder="Пароль">
+            <input type="password" id="authConfirm" placeholder="Підтвердіть пароль" style="display:none;">
+            <button id="authSubmit">Увійти</button>
+
+            <p id="toggleAuth">
+                Немає акаунту? <span>Зареєструватися</span>
+            </p>
+
+            <button id="closeAuth">✖</button>
+        </div>
     </div>
 
     <!-- Модальне вікно кошика -->
@@ -53,6 +79,10 @@
     </div>
 </header>
 
+    <div id="modal-description" class="modal-description hidden">
+            <button id="closeBtn-d"><i class="ti ti-x"></i></button>
+            <div id="description"></div>
+    </div>
 <div class="filter">
     <button class="filter-btn active" data-category="all">Всі товари</button>
     <button class="filter-btn" data-category="smartphone">Смартфони</button>

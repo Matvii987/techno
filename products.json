@@ -1,72 +1,197 @@
 [
   {
     "id": 1,
-    "title": "Смартфон Samsung Galaxy S25",
+    "title": "Samsung Galaxy S25",
     "price": 32999,
     "image": "assets/samsung_s25.jpg",
-    "category": "smartphone"
+    "category": "smartphone",
+    "description": "Флагманський смартфон Samsung Galaxy S25 з яскравим Dynamic AMOLED 2X дисплеєм 120 Гц, потужним процесором та покращеною системою камер. Ідеальний вибір для тих, хто хоче максимальну продуктивність, довгу автономність та преміальний дизайн у 2025 році."
   },
   {
     "id": 2,
-    "title": "Смартфон iPhone 17 Pro Max",
+    "title": "iPhone 17 Pro Max",
     "price": 75999,
     "image": "assets/iphone17pro_max.jpg",
-    "category": "smartphone"
+    "category": "smartphone",
+    "description": "Найпотужніший iPhone 17 Pro Max з новітнім чіпом Apple, титановим корпусом, професійною системою камер з покращеним зумом та рекордною автономністю. Розкішний флагман для тих, хто цінує статус, продуктивність та найкращу екосистему."
   },
   {
     "id": 3,
-    "title": "Смартфон iPhone 16 Pro Max",
-    "price": 60999,
-    "image": "assets/iphone16_pro_max.avif",
-    "category": "smartphone"
+    "title": "Google Pixel 9",
+    "price": 38999,
+    "image": "assets/pixel_9.webp",
+    "category": "smartphone",
+    "description": "Google Pixel 9 — смартфон з найкращою в світі камерою завдяки передовим AI-функціям. Чиста Android-система, швидка робота, розумні функції штучного інтелекту та чудова автономність роблять його ідеальним вибором для любителів фотографії та сучасних технологій."
   },
   {
     "id": 4,
-    "title": "Смартфон Xiaomi Redmi 15C",
-    "price": 8999,
+    "title": "Xiaomi redmi 15c",
+    "price": 27999,
     "image": "assets/xiomi_redmi_15c.avif",
-    "category": "smartphone"
+    "category": "smartphone",
+    "description": "Xiaomi Redmi 15C — швидкий та доступний смартфон з потужним процесором, великим та яскравим дисплеєм, ємною батареєю та швидкою зарядкою. Відмінний вибір для тих, хто шукає максимум можливостей за розумні гроші без компромісів у повсякденному використанні."
   },
   {
     "id": 5,
-    "title": "Ноутбук Lenovo IdeaPad 3",
-    "price": 18999,
-    "image": "assets/lenovo_ideapad.avif",
-    "category": "laptop"
+    "title": "OnePlus 13",
+    "price": 35999,
+    "image": "assets/onplus13.jpg",
+    "category": "smartphone",
+    "description": "OnePlus 13 вражає плавністю роботи завдяки топовому процесору та високій частоті оновлення екрану. Надшвидка зарядка, преміальні матеріали корпусу та чиста OxygenOS роблять цей смартфон одним з найкращих варіантів у своєму сегменті."
   },
   {
     "id": 6,
-    "title": "Ноутбук ASUS VivoBook 15",
-    "price": 22999,
-    "image": "assets/asus_vivobook.jpg",
-    "category": "laptop"
+    "title": "Samsung S24",
+    "price": 23999,
+    "image": "assets/samsungS24.avif",
+    "category": "smartphone",
+    "description": "Samsung Galaxy S24 — стильний флагман з потужною потрійною камерою, яскравим AMOLED-дисплеєм та підтримкою штучного інтелекту. Надійний вибір для тих, хто хоче сучасні технології за більш привабливою ціною порівняно з новішою моделлю."
   },
+
   {
     "id": 7,
-    "title": "Планшет Samsung Galaxy Tab S9",
-    "price": 28999,
-    "image": "assets/galaxy_tab_s9.jpg",
-    "category": "tablet"
+    "title": "Lenovo IdeaPad",
+    "price": 18999,
+    "image": "assets/lenovo_ideapad.avif",
+    "category": "laptop",
+    "description": "Lenovo IdeaPad — надійний та практичний ноутбук для щоденної роботи, навчання та перегляду контенту. Має якісний дисплей, зручну клавіатуру, достатню продуктивність та хорошу автономність, що робить його відмінним вибором для студентів та офісних працівників."
   },
   {
     "id": 8,
-    "title": "Планшет iPad 10.9 (2024)",
-    "price": 34999,
-    "image": "assets/ipad_109.jpg",
-    "category": "tablet"
+    "title": "ASUS VivoBook 15",
+    "price": 22999,
+    "image": "assets/vivobook.webp",
+    "category": "laptop",
+    "description": "Стильний ноутбук ASUS VivoBook 15 з якісним IPS-екраном, сучасним дизайном та достатньою продуктивністю для роботи та навчання. Тонкий корпус, зручна клавіатура з підсвіткою та хороша автономність роблять його приємним супутником у повсякденному використанні."
   },
   {
     "id": 9,
-    "title": "Монітор LG UltraGear 27\"",
-    "price": 12499,
-    "image": "assets/lg_ultragear.jpg",
-    "category": "monitor"
+    "title": "HP Pavilion 16",
+    "price": 24999,
+    "image": "assets/hp16.jpg",
+    "category": "laptop",
+    "description": "Універсальний ноутбук HP Pavilion 16 з великим екраном, потужним процесором та стильним дизайном. Підходить як для роботи з документами, так і для перегляду фільмів чи легкого редагування фото. Відмінне співвідношення ціни та якості."
   },
   {
     "id": 10,
-    "title": "Монітор Samsung Odyssey G5",
+    "title": "MacBook Air M3",
+    "price": 45999,
+    "image": "assets/macbook_air.jpg",
+    "category": "laptop",
+    "description": "Легкий та потужний MacBook Air з чіпом M3 — ідеальний вибір для тих, хто працює в екосистемі Apple. Надзвичайна автономність до 18 годин, безшумна робота, преміальний алюмінієвий корпус та швидкодія роблять його найкращим ультрабуком у своєму класі."
+  },
+  {
+    "id": 11,
+    "title": "Acer Aspire 7",
+    "price": 25999,
+    "image": "assets/acer.webp",
+    "category": "laptop",
+    "description": "Acer Aspire 7 — універсальний ноутбук, який чудово підходить як для роботи, так і для ігор середнього рівня. Потужна відеокарта, сучасний процесор та якісний екран дозволяють комфортно працювати з вимогливими програмами та грати в популярні ігри."
+  },
+  {
+    "id": 12,
+    "title": "Lenovo Legion 5",
+    "price": 39999,
+    "image": "assets/legion5.webp",
+    "category": "laptop",
+    "description": "Ігровий ноутбук Lenovo Legion 5 з потужним процесором та відеокартою, високою частотою оновлення екрану та ефективною системою охолодження. Ідеальний вибір для геймерів, які хочуть грати на високих налаштуваннях та одночасно комфортно працювати."
+  },
+
+  {
+    "id": 13,
+    "title": "iPad 10.9 (2024)",
+    "price": 34999,
+    "image": "assets/ipad.webp",
+    "category": "tablet",
+    "description": "Яскравий та продуктивний iPad 10.9 (2024) з Liquid Retina дисплеєм, потужним чіпом та підтримкою Apple Pencil. Чудово підходить для роботи, навчання, малювання, перегляду фільмів та користування сучасними додатками."
+  },
+  {
+    "id": 14,
+    "title": "Samsung Galaxy Tab S9",
+    "price": 28999,
+    "image": "assets/tab_s9.webp",
+    "category": "tablet",
+    "description": "Преміальний планшет Samsung Galaxy Tab S9 з чудовим AMOLED-дисплеєм, підтримкою S Pen та потужною продуктивністю. Ідеальний для роботи з документами, малювання, перегляду контенту в високій якості та багатозадачності."
+  },
+  {
+    "id": 15,
+    "title": "Lenovo Tab P12",
+    "price": 17999,
+    "image": "assets/tab_p12.jpg",
+    "category": "tablet",
+    "description": "Lenovo Tab P12 з великим та якісним екраном — відмінний вибір для навчання, перегляду відео та роботи з документами. Комфортний для тривалого використання завдяки великому дисплею та хорошій автономності."
+  },
+  {
+    "id": 16,
+    "title": "Xiaomi Pad 6",
+    "price": 14999,
+    "image": "assets/pad6.webp",
+    "category": "tablet",
+    "description": "Xiaomi Pad 6 пропонує відмінний баланс між продуктивністю, якістю екрану та доступною ціною. Підходить для навчання, споживання контенту, легкої роботи та ігор завдяки швидкому процесору та якісному дисплею."
+  },
+  {
+    "id": 17,
+    "title": "Huawei MatePad 11",
+    "price": 19999,
+    "image": "assets/matepad.avif",
+    "category": "tablet",
+    "description": "Huawei MatePad 11 з плавним 120 Гц екраном забезпечує надзвичайно комфортне використання. Хороша продуктивність, стильний дизайн та тривала автономність роблять його чудовим помічником для роботи та розваг."
+  },
+  {
+    "id": 18,
+    "title": "Microsoft Surface Go 4",
+    "price": 25999,
+    "image": "assets/surface.avif",
+    "category": "tablet",
+    "description": "Microsoft Surface Go 4 — компактний Windows-планшет, який чудово підходить для роботи з офісними програмами, браузером та легкими додатками. Підтримка клавіатури та стилуса робить його універсальним пристроєм для бізнесу та навчання."
+  },
+
+  {
+    "id": 19,
+    "title": "LG UltraGear 27",
+    "price": 12499,
+    "image": "assets/lg.jpg",
+    "category": "monitor",
+    "description": "Ігровий монітор LG UltraGear 27” з частотою оновлення 180 Гц та мінімальним часом відгуку. Ідеальний вибір для динамічних ігор, де важлива швидкість реакції та плавність зображення."
+  },
+  {
+    "id": 20,
+    "title": "Samsung Odyssey G5",
     "price": 15999,
-    "image": "assets/samsung_odyssey.jpg",
-    "category": "monitor"
+    "image": "assets/odyssey.webp",
+    "category": "monitor",
+    "description": "Кривий ігровий монітор Samsung Odyssey G5 з високою роздільною здатністю QHD. Покращена передача кольорів, висока частота оновлення та ергономічна підставка роблять його чудовим вибором для геймерів."
+  },
+  {
+    "id": 21,
+    "title": "Dell P2422H",
+    "price": 9999,
+    "image": "assets/dell.avif",
+    "category": "monitor",
+    "description": "Офісний IPS-монітор Dell P2422H з відмінною передачею кольорів та широкими кутами огляду. Ідеально підходить для роботи з документами, таблицями та тривалої роботи за комп’ютером."
+  },
+  {
+    "id": 22,
+    "title": "MSI G2412",
+    "price": 10999,
+    "image": "assets/msi.webp",
+    "category": "monitor",
+    "description": "Ігровий монітор MSI G2412 з частотою оновлення 165 Гц — відмінний вибір для геймерів, які хочуть плавну картинку та швидкий відгук. Має сучасний дизайн та всі необхідні ігрові функції."
+  },
+  {
+    "id": 23,
+    "title": "AOC 24G2",
+    "price": 11999,
+    "image": "assets/aoc.avif",
+    "category": "monitor",
+    "description": "Один з найпопулярніших ігрових моніторів AOC 24G2 з високою частотою оновлення та хорошою передачею кольорів. Відмінне співвідношення ціни та якості для геймерів-початківців і не тільки."
+  },
+  {
+    "id": 24,
+    "title": "Gigabyte G27Q",
+    "price": 14999,
+    "image": "assets/Gigabyte_G27Q.webp",
+    "category": "monitor",
+    "description": "Якісний QHD IPS-монітор Gigabyte G27Q з високою частотою оновлення, відмінною кольоропередачею та сучасними ігровими технологіями. Підходить як для ігор, так і для роботи з графікою."
   }
 ]

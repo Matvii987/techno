@@ -9,6 +9,12 @@ body {
     background: #f0f0f0;
     padding-top: 85px;
     line-height: 1.5;
+    color: #222;
+}
+
+
+.hidden{
+    display: none;
 }
 
 /* ====================== HEADER ====================== */
@@ -17,14 +23,53 @@ header {
     align-items: center;
     justify-content: space-between;
     background: white;
-    padding: 12px 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 19px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
     gap: 15px;
     transition: all 0.4s ease;
+}
+
+.login-btn {
+    border-radius: 999px;
+    color: #111;
+    background: linear-gradient(145deg, #f5f5f5, #e6e6e6);
+    padding: 10px 18px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    
+    font-weight: 500;
+    letter-spacing: 0.3px;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    box-shadow: 
+        0 2px 5px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.login-btn:hover {
+    background: linear-gradient(145deg, #ffffff, #eaeaea);
+    transform: translateY(-1px);
+
+    box-shadow: 
+        0 4px 10px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ti-user{
+    font-size: 15px;
 }
 
 .logo {
@@ -142,18 +187,20 @@ button:hover {
 }
 
 .btn-basket {
-    background: white;
+    background: rgb(238, 240, 237);
     color: #5cbd1c;
-    border: 2px solid #5cbd1c;
+    border: 1.5px solid #5cbd1c;
     font-weight: 500;
+    border-radius: 12px;
+    padding: 10px;
     transition: all 0.3s ease;
-    border-radius: 40px;
 }
 
-.btn-basket:hover{
-    background: white;
+.btn-basket:hover {
+    background: rgb(225, 225, 225);
 }
-/* Бургер */
+
+/* Бургер-меню */
 .burger {
     display: none;
     flex-direction: column;
@@ -169,7 +216,7 @@ button:hover {
     transition: all 0.4s ease;
 }
 
-/* Фільтри */
+/* ====================== ФІЛЬТРИ ====================== */
 .filter {
     background: white;
     padding: 15px 20px;
@@ -178,8 +225,7 @@ button:hover {
     flex-wrap: wrap;
     margin: 15px 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    transition: all 0.4s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     justify-content: center;
 }
 
@@ -198,6 +244,12 @@ button:hover {
     background: #f0f0f0;
 }
 
+.filter-btn.active {
+    background: #5cbd1c;
+    color: white;
+    font-weight: 600;
+}
+
 /* ====================== ТОВАРИ ====================== */
 .products {
     display: grid;
@@ -207,16 +259,47 @@ button:hover {
 }
 
 .product-card {
-    background: white;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    transition: all 0.4s ease;
     position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.product-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 12px;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+.product-card h3 {
+    font-size: 15px;
+    margin: 10px 0 12px;
+    min-height: 42px;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+}
+
+.price {
+    font-size: 21px;
+    font-weight: 700;
+    color: #e63939;
+    margin-bottom: 12px;
 }
 
 .badge {
@@ -229,31 +312,11 @@ button:hover {
     border-radius: 6px;
     font-size: 12px;
     font-weight: 600;
-    transition: all 0.3s ease;
+    z-index: 2;
 }
 
-.product-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: contain;
-    margin-bottom: 12px;
-    transition: transform 0.4s ease;
-}
 
-.product-card h3 {
-    font-size: 15px;
-    margin: 10px 0 12px;
-    min-height: 42px;
-    transition: color 0.3s ease;
-}
-
-.price {
-    font-size: 21px;
-    font-weight: 700;
-    color: #e63939;
-    margin-bottom: 12px;
-}
-
+/* Кнопка "Купити" */
 .buy-btn {
     width: 52px;
     height: 52px;
@@ -268,18 +331,23 @@ button:hover {
     align-items: center;
     justify-content: center;
     transition: all 0.4s ease;
+    position: relative;
+    z-index: 2;
 }
 
 .buy-btn:hover {
     background: #ff7700;
+    transform: scale(1.1);
 }
 
-/* ====================== КОШИК ====================== */
+/* ====================== КОШИК (МОДАЛЬНЕ ВІКНО) ====================== */
 #overlay {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
     display: none;
     justify-content: center;
     align-items: center;
@@ -329,22 +397,6 @@ button:hover {
     transform: rotate(90deg);
 }
 
-#cartItems h2 {
-    margin-bottom: 20px;
-    font-size: 22px;
-    color: #333;
-}
-
-/* Порожній кошик */
-#cartItems p {
-    text-align: center;
-    color: #888;
-    font-size: 17px;
-    padding: 80px 20px;
-    line-height: 1.6;
-}
-
-/* Елемент товару в кошику */
 .cart-item {
     display: flex;
     align-items: center;
@@ -381,12 +433,11 @@ button:hover {
 }
 
 .cart-item-price {
-    color: #e63939;           /* Червоний колір ціни */
+    color: #e63939;
     font-weight: 700;
     font-size: 17px;
 }
 
-/* Блок кількості + ціна вирівняні */
 .cart-item-quantity {
     display: flex;
     align-items: center;
@@ -404,9 +455,6 @@ button:hover {
     font-size: 18px;
     font-weight: 500;
     transition: all 0.25s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .qty-btn:hover {
@@ -432,7 +480,7 @@ button:hover {
 .cart-total {
     text-align: right;
     font-size: 20px;
-    margin: 25px 0 18px 0;
+    margin: 25px 0 18px;
     font-weight: 700;
     color: #222;
 }
@@ -463,7 +511,7 @@ button:hover {
     color: white;
     padding: 14px 24px;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     opacity: 0;
     transition: all 0.4s ease;
     z-index: 3000;
@@ -474,25 +522,151 @@ button:hover {
     bottom: 35px;
 }
 
-/* Активний фільтр */
-.filter-btn.active {
-    background: #5cbd1c;
-    color: white;
+/* затемнення фону */
+.auth-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 15, 15, 0.75);
+    backdrop-filter: blur(6px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 5000;
+    animation: fadeIn 0.3s ease;
+}
+
+/* сама карточка */
+.auth-box {
+    background: linear-gradient(145deg, #ffffff, #f3f3f3);
+    padding: 35px 30px;
+    border-radius: 18px;
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    animation: slideUp 0.35s ease;
+}
+
+/* заголовок */
+.auth-box h2 {
+    text-align: center;
+    margin-bottom: 5px;
     font-weight: 600;
 }
 
-.filter-btn {
-    transition: all 0.3s ease;
+/* інпути */
+.auth-box input {
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: 0.25s;
+    outline: none;
 }
 
-/* Заголовок категорії (якщо потрібно) */
-.category-title {
-    grid-column: 1 / -1;
-    font-size: 24px;
-    font-weight: 700;
-    color: #222;
-    margin: 20px 0 10px 10px;
+.auth-box input:focus {
+    border-color: #5cbd1c;
+    box-shadow: 0 0 0 3px rgba(92,189,28,0.2);
 }
+
+/* кнопка */
+.auth-box button {
+    padding: 12px;
+    background: linear-gradient(135deg, #5cbd1c, #4aa315);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.auth-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(92,189,28,0.4);
+}
+
+/* перемикач */
+#toggleAuth {
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+}
+
+#toggleAuth span {
+    color: #5cbd1c;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#toggleAuth span:hover {
+    text-decoration: underline;
+}
+
+/* кнопка закриття */
+#closeAuth {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #999;
+    transition: 0.2s;
+}
+
+#closeAuth:hover {
+    color: black;
+    transform: rotate(90deg);
+}
+
+.password-box {
+    position: relative;
+}
+
+.password-box input {
+    width: 100%;
+    padding-right: 40px;
+}
+
+.toggle-pass {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+    font-size: 16px;
+}
+
+.toggle-pass:hover {
+    color: black;
+}
+
+
+/* анімації */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+
+
 
 /* Адаптив */
 @media (max-width: 768px) {
@@ -505,7 +679,7 @@ button:hover {
         background: white;
         padding: 15px;
         border-radius: 12px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         width: 180px;
         opacity: 0;
         transform: translateY(-10px);
@@ -527,4 +701,3 @@ button:hover {
         padding: 20px;
     }
 }
-
