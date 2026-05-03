@@ -675,15 +675,6 @@ function showProductDescription(product) {
     content.innerHTML = `
         <img src="${product.image}" alt="${product.title}">
         <h2>${product.title}</h2>
-        
-        <div style="display:flex; align-items:center; gap:12px; margin:15px 0;">
-            <div class="stars" style="font-size:28px;">
-                ${renderStarsHTML(product.id, avgRating)}
-            </div>
-            <span style="font-size:17px; color:#444;">
-                ${avgRating} (${count} ${count === 1 ? 'відгук' : 'відгуків'})
-            </span>
-        </div>
 
         <div class="price">${product.price.toLocaleString('uk-UA')} ₴</div>
         <p>${product.description || 'Опис товару скоро з’явиться...'}</p>
@@ -700,18 +691,6 @@ function showProductDescription(product) {
         addToCart(product);
     });
 
-    // Зірки в модальному вікні
-    setTimeout(() => {
-        const modalStars = content.querySelectorAll('.star');
-        modalStars.forEach(star => {
-            star.addEventListener('click', () => {
-                const rating = parseInt(star.dataset.value);
-                addRating(product.id, rating);
-                // Оновлюємо модальне вікно
-                showProductDescription(product);
-            });
-        });
-    }, 100);
 }
 
 updateUserUI();
