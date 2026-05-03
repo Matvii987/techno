@@ -27,6 +27,8 @@ const authConfirm = document.getElementById("authConfirm");
 const katalog = document.getElementById('katalog');
 const modalDescription = document.getElementById('modal-description');
 const card = document.querySelector('.product-card');
+const stars = document.querySelectorAll('.star');
+const result = document.getElementById('result');
 
 // ========================= БУРГЕР МЕНЮ =========================
 function toggleMenu() {
@@ -80,6 +82,13 @@ function renderProducts(products) {
                 <button class="buy-btn" data-id="${product.id}">
                     <i class="ti ti-shopping-cart"></i>
                 </button>
+                <div class="stars">
+                  <span class="star" data-value="1">★</span>
+                  <span class="star" data-value="2">★</span>
+                  <span class="star" data-value="3">★</span>
+                  <span class="star" data-value="4">★</span>
+                  <span class="star" data-value="5">★</span>
+                </div>
             </div>
         `;
         productList.innerHTML += cardHTML;
@@ -124,12 +133,6 @@ function filterProducts(category) {
         const filtered = allProducts.filter(p => p.category === category);
         renderProducts(filtered);
     }
-}
-
-function showAllProducts() {
-    filterBtns.forEach(btn => btn.classList.remove('active'));
-    document.querySelector('.filter-btn[data-category="all"]').classList.add('active');
-    renderProducts(allProducts);
 }
 
 // ========================= КОШИК =========================
@@ -516,8 +519,202 @@ document.getElementById('modal-description').addEventListener('click', (e) => {
 });
 
 
-updateUserUI();
 
+// ====================== СИСТЕМА ОЦІНЮВАННЯ ======================
+
+// Отримати всі оцінки товару
+function getProductRatings(productId) {
+    const ratings = JSON.parse(localStorage.getItem('productRatings')) || {};
+    return ratings[productId] || [];
+}
+
+// Додати/оновити оцінку
+function addRating(productId, rating) {
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+    if (!user) {
+        showNotification("⚠️ Увійдіть, щоб поставити оцінку");
+        authModal.style.display = "flex";
+        return;
+    }
+
+    let ratings = JSON.parse(localStorage.getItem('productRatings')) || {};
+    
+    if (!ratings[productId]) ratings[productId] = [];
+    
+    // Видаляємо стару оцінку цього користувача (якщо є)
+    ratings[productId] = ratings[productId].filter(r => r.userEmail !== user.email);
+    
+    // Додаємо нову
+    ratings[productId].push({
+        userEmail: user.email,
+        rating: rating,
+        date: new Date().toISOString()
+    });
+
+    localStorage.setItem('productRatings', JSON.stringify(ratings));
+    
+    showNotification(`✅ Дякуємо! Ви поставили ${rating} ★`);
+    renderProducts(allProducts); // оновлюємо всі картки
+}
+
+// Обчислення середнього рейтингу
+function getAverageRating(productId) {
+    const ratings = getProductRatings(productId);
+    if (ratings.length === 0) return 0;
+    
+    const sum = ratings.reduce((acc, r) => acc + r.rating, 0);
+    return (sum / ratings.length).toFixed(1);
+}
+
+// Рендер зірок (HTML)
+function renderStarsHTML(productId, average = 0) {
+    let html = '';
+    const avg = parseFloat(average);
+    
+    for (let i = 1; i <= 5; i++) {
+        if (i <= Math.floor(avg)) {
+            html += `<span class="star active" data-value="${i}">★</span>`;
+        } else if (i - 0.5 < avg && avg < i) {
+            html += `<span class="star half" data-value="${i}">★</span>`;
+        } else {
+            html += `<span class="star" data-value="${i}">★</span>`;
+        }
+    }
+    return html;
+}
+
+// Головна функція рендеру товарів (оновлена)
+function renderProducts(products) {
+    productList.innerHTML = "";
+
+    if (products.length === 0) {
+        productList.innerHTML = `<p style="grid-column:1/-1;text-align:center;padding:60px;color:#888;">
+            Товарів у цій категорії поки немає 😔
+        </p>`;
+        return;
+    }
+
+    products.forEach(product => {
+        const avgRating = getAverageRating(product.id);
+        const ratingsCount = getProductRatings(product.id).length;
+
+        const desc = product.description || 'Опис товару скоро з’явиться...';
+        const shortDesc = desc.substring(0, 110) + (desc.length > 110 ? '...' : '');
+
+        const cardHTML = `
+            <div class="product-card" data-id="${product.id}">
+                <img src="${product.image}" alt="${product.title}">
+                <h3>${product.title}</h3>
+                <div class="price">
+                    ${product.price.toLocaleString('uk-UA')} ₴
+                </div>
+                
+                <div class="stars" style="margin: 8px 0 12px;">
+                    ${renderStarsHTML(product.id, avgRating)}
+                    <span style="font-size:13px; color:#666; margin-left:6px;">
+                        ${avgRating > 0 ? avgRating : '—'} 
+                        ${ratingsCount ? `(${ratingsCount})` : ''}
+                    </span>
+                </div>
+
+                <button class="buy-btn" data-id="${product.id}">
+                    <i class="ti ti-shopping-cart"></i>
+                </button>
+            </div>
+        `;
+        productList.innerHTML += cardHTML;
+    });
+
+    // Клік по всій картці (відкрити опис)
+    document.querySelectorAll('.product-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            if (e.target.closest('.buy-btn') || e.target.closest('.stars')) return;
+
+            const id = parseInt(card.dataset.id);
+            const product = allProducts.find(p => p.id === id);
+            if (product) showProductDescription(product);
+        });
+    });
+
+    // Кнопка "Купити"
+    document.querySelectorAll('.buy-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const id = parseInt(btn.dataset.id);
+            const product = allProducts.find(p => p.id === id);
+            if (product) addToCart(product);
+        });
+    });
+
+    // Клік по зірках
+    attachStarListeners();
+}
+
+// Прикріплення обробників на зірки
+function attachStarListeners() {
+    document.querySelectorAll('.product-card .stars').forEach(starsContainer => {
+        const productId = parseInt(starsContainer.closest('.product-card').dataset.id);
+
+        starsContainer.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const rating = parseInt(star.dataset.value);
+                addRating(productId, rating);
+            });
+        });
+    });
+}
+
+// Оновлення функції showProductDescription (додаємо зірки в модальне вікно)
+function showProductDescription(product) {
+    const modal = document.getElementById('modal-description');
+    const content = document.getElementById('description-content');
+    const avgRating = getAverageRating(product.id);
+    const count = getProductRatings(product.id).length;
+
+    content.innerHTML = `
+        <img src="${product.image}" alt="${product.title}">
+        <h2>${product.title}</h2>
+        
+        <div style="display:flex; align-items:center; gap:12px; margin:15px 0;">
+            <div class="stars" style="font-size:28px;">
+                ${renderStarsHTML(product.id, avgRating)}
+            </div>
+            <span style="font-size:17px; color:#444;">
+                ${avgRating} (${count} ${count === 1 ? 'відгук' : 'відгуків'})
+            </span>
+        </div>
+
+        <div class="price">${product.price.toLocaleString('uk-UA')} ₴</div>
+        <p>${product.description || 'Опис товару скоро з’явиться...'}</p>
+        
+        <button class="buy-btn" style="width:100%; height:52px; border-radius:12px; font-size:18px; margin-top:20px;" data-id="${product.id}">
+            <i class="ti ti-shopping-cart"></i> Додати до кошика
+        </button>
+    `;
+
+    modal.classList.add('active');
+
+    // Кнопка купити
+    content.querySelector('.buy-btn').addEventListener('click', () => {
+        addToCart(product);
+    });
+
+    // Зірки в модальному вікні
+    setTimeout(() => {
+        const modalStars = content.querySelectorAll('.star');
+        modalStars.forEach(star => {
+            star.addEventListener('click', () => {
+                const rating = parseInt(star.dataset.value);
+                addRating(product.id, rating);
+                // Оновлюємо модальне вікно
+                showProductDescription(product);
+            });
+        });
+    }, 100);
+}
+
+updateUserUI();
 loadProducts();
 updateCartCount();
 

@@ -734,6 +734,69 @@ button:hover {
     margin-bottom: 20px;
 }
 
+#footer{
+    background: #f0f0f0;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid rgb(193, 193, 193);
+}
+
+.footer-elements{
+    color: rgb(68, 68, 68);
+    padding: 10px;
+    border-radius: 45px;
+    text-decoration: none;
+    font-size: 30px;
+    width: 60px !important;
+    height: 50px;
+}
+
+.product-card .stars {
+    display: flex;
+    gap: 2px;
+    font-size: 22px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.product-card .star {
+    transition: all 0.2s ease;
+}
+
+.product-card .star:hover,
+.product-card .star.active,
+.product-card .star.half {
+    color: #ffd700;
+    transform: scale(1.1);
+}
+
+/* Напівзаповнена зірка (якщо хочеш) */
+.star.half {
+    position: relative;
+}
+
+.star.half::after {
+    content: '★';
+    position: absolute;
+    left: 0;
+    width: 50%;
+    overflow: hidden;
+    color: #ffd700;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
 /* анімації */
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -788,3 +851,4 @@ button:hover {
         padding: 20px;
     }
 }
+
